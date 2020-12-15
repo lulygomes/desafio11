@@ -56,6 +56,7 @@ const Dashboard: React.FC = () => {
 
   async function handleNavigate(id: number): Promise<void> {
     // Navigate do ProductDetails page
+    navigation.navigate('FoodDetails', { id });
   }
 
   useEffect(() => {
@@ -82,12 +83,17 @@ const Dashboard: React.FC = () => {
 
       // if (searchValue) {
       //   const foodsFilter = foodFormatted.map(food => {
-      //     if (food.name.includes(searchValue)) {
+      //     const search = food.name.includes(searchValue);
+      //     if (search) {
       //       return food;
       //     }
       //   });
 
-      //   setFoods(foodsFilter);
+      //   if (foodsFilter) {
+      //     setFoods(foodsFilter);
+      //   }
+
+      //   // return;
       // }
 
       setFoods(foodFormatted);
