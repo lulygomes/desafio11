@@ -111,7 +111,7 @@ const FoodDetails: React.FC = () => {
       }
       return extra;
     });
-    console.log();
+
     setExtras(extraDecrementted);
   }
 
