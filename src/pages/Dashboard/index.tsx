@@ -62,7 +62,13 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     async function loadFoods(): Promise<void> {
       // Load Foods from API
-      const response = await api.get('foods');
+      const response = await api.get('/foods', {
+        params: {
+          category_like: selectedCategory,
+          name_like: searchValue,
+        },
+      });
+
       const foodsData: Food[] = response.data;
       const foodFormatted = foodsData.map(food => {
         return {
@@ -80,21 +86,6 @@ const Dashboard: React.FC = () => {
 
         return;
       }
-
-      // if (searchValue) {
-      //   const foodsFilter = foodFormatted.map(food => {
-      //     const search = food.name.includes(searchValue);
-      //     if (search) {
-      //       return food;
-      //     }
-      //   });
-
-      //   if (foodsFilter) {
-      //     setFoods(foodsFilter);
-      //   }
-
-      //   // return;
-      // }
 
       setFoods(foodFormatted);
     }
