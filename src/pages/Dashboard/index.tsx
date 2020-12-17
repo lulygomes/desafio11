@@ -67,25 +67,12 @@ const Dashboard: React.FC = () => {
         },
       });
 
-      const foodsData: Food[] = response.data;
-      const foodFormatted = foodsData.map(food => {
-        return {
+      setFoods(
+        response.data.map((food: Food) => ({
           ...food,
           formattedPrice: formatValue(food.price),
-        };
-      });
-
-      if (selectedCategory) {
-        const foodsFilter = foodFormatted.filter(
-          food => Number(food.category) === selectedCategory,
-        );
-
-        setFoods(foodsFilter);
-
-        return;
-      }
-
-      setFoods(foodFormatted);
+        })),
+      );
     }
 
     loadFoods();
